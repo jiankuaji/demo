@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kj.service.dao.PostMapper">
+
+<select id="selectPosts" resultType="Post">
+    select * from kjpost where status !=2
+    <if test="userid !=''">
+        and userid=#{userid}
+    </if>
+    order by status desc ,createtime desc
+    limit #{start},#{limit}
+</select>
+
+<select id="selectPostRow" resultType="int">
+    select count(*) from kjpost  where status !=2
+    <if test="userid !='' " >
+    and userid=#{userid}
+    </if>
+</select>
+
+    <insert id="insertPost">
+        insert into kjpost(id,userid,title,content,status,createtime,commentcount)
+        value(#{id},#{userid},#{title},#{content},#{status},#{createtime},#{commentcount})
+    </insert>
+
+</mapper>

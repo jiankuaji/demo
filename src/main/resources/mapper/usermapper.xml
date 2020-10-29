@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kj.service.dao.UserMapper">
+    <select id="selectById"  resultType="User">
+        SELECT * FROM kjuser WHERE id =#{id}
+    </select>
+
+    <insert id="insertUser" parameterType="User">
+    INSERT  INTO  kjuser(id,name,username,password,email,createtime)value (#{id},#{name},#{username},#{password},#{email},#{createtime})
+
+    </insert>
+</mapper>
